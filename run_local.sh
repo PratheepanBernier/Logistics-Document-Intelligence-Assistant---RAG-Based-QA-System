@@ -6,6 +6,7 @@
 # Colors for output
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 echo -e "${GREEN}Starting Logistics Document Intelligence Assistant...${NC}"
@@ -28,16 +29,26 @@ else
     source .venv/bin/activate
 fi
 
-# 3. Set environment variables
+# 3. Ensure .env file exists
+if [ ! -f ".env" ]; then
+    if [ -f ".env.example" ]; then
+        echo -e "${YELLOW}Creating .env from .env.example...${NC}"
+        cp .env.example .env
+    else
+        echo -e "${RED}.env.example not found. Please create environment variables manually.${NC}"
+    fi
+fi
+
+# 4. Set environment variables
 export PYTHONPATH=$PYTHONPATH:$(pwd)/backend:$(pwd)/backend/src
 export BACKEND_URL="http://localhost:8000"
 
-# 4. Start Backend in background
+# 5. Start Backend in background
 echo -e "${GREEN}Starting Backend API (FastAPI) on port 8000...${NC}"
 uvicorn backend.main:app --host 0.0.0.0 --port 8000 > logs/backend.log 2>&1 &
 BACKEND_PID=$!
 
-# 5. Wait for backend to be ready
+# 6. Wait for backend to be ready
 echo -e "${YELLOW}Waiting for backend to start...${NC}"
 MAX_RETRIES=10
 RETRY_COUNT=0
@@ -52,7 +63,7 @@ while ! curl -s http://localhost:8000/ping > /dev/null; do
 done
 echo -e "${GREEN}Backend is ready!${NC}"
 
-# 6. Start Frontend
+# 7. Start Frontend
 echo -e "${GREEN}Starting Frontend (Streamlit) on port 8501...${NC}"
 cd frontend
 streamlit run app.py

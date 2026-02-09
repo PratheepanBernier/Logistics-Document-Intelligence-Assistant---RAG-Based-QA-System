@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     
     # LLM Settings
-    GROQ_API_KEY: str
+    GROQ_API_KEY: str = "gsk_your_api_key"
     QA_MODEL: str = "llama-3.3-70b-versatile"  # Updated to current supported model
     VISION_MODEL: str = "llama-3.2-11b-vision-preview" # For OCR if needed
     EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
