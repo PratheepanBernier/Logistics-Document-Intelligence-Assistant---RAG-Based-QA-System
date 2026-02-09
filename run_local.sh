@@ -34,10 +34,8 @@ export BACKEND_URL="http://localhost:8000"
 
 # 4. Start Backend in background
 echo -e "${GREEN}Starting Backend API (FastAPI) on port 8000...${NC}"
-cd backend
-python3 main.py > ../logs/backend.log 2>&1 &
+uvicorn backend.main:app --host 0.0.0.0 --port 8000 > logs/backend.log 2>&1 &
 BACKEND_PID=$!
-cd ..
 
 # 5. Wait for backend to be ready
 echo -e "${YELLOW}Waiting for backend to start...${NC}"

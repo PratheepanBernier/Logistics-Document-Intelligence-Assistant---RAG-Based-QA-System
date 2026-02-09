@@ -80,9 +80,9 @@ Heuristic-based scoring (0.0 to 1.0) based on:
 ```
 Alternatively, use the `Makefile`:
 ```bash
-make install    # Install dependencies
-make run        # Run both backend and frontend
-make docker-up  # Start services with Docker
+make build	    	    #Builds Docker containers using Docker Compose.
+make run-docker	    	#Starts the full application stack using Docker Compose.
+make run-local	    	#Runs the application locally using the run_local.sh script.
 ```
 
 ---
