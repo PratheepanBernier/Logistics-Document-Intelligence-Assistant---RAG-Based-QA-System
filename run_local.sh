@@ -10,6 +10,9 @@ NC='\033[0m' # No Color
 
 echo -e "${GREEN}Starting Logistics Document Intelligence Assistant...${NC}"
 
+# 0. Ensure logs directory exists
+mkdir -p logs
+
 # 1. Kill any existing processes on ports 8000 and 8501
 echo -e "${YELLOW}Checking for existing processes on ports 8000 and 8501...${NC}"
 lsof -ti:8000 | xargs kill -9 2>/dev/null
@@ -26,7 +29,7 @@ else
 fi
 
 # 3. Set environment variables
-export PYTHONPATH=$PYTHONPATH:$(pwd)/backend/src
+export PYTHONPATH=$PYTHONPATH:$(pwd)/backend:$(pwd)/backend/src
 export BACKEND_URL="http://localhost:8000"
 
 # 4. Start Backend in background

@@ -99,6 +99,9 @@ The easiest way to run the project is using the provided shell script:
 ```bash
 # 1. Setup environment variables (Add your GROQ_API_KEY)
 cp .env.example .env
+# Also copy to backend/ and frontend/ directories for reliability
+cp .env backend/.env
+cp .env frontend/.env
 
 # 2. Run the application
 chmod +x run_local.sh
@@ -120,7 +123,8 @@ python -m venv .venv
 pip install -r requirements.txt
 
 # 4. Run Backend (In a separate terminal)
-$env:PYTHONPATH = "$(Get-Location)\backend\src"
+# Note: Ensure you are in the project root
+$env:PYTHONPATH = "$(Get-Location)\backend;$(Get-Location)\backend\src"
 uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
 
 # 5. Run Frontend (In another terminal)
