@@ -1,5 +1,7 @@
 # 🚚 Logistics Document Intelligence Assistant
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_svg?color=ff4b4b)](https://logistic-docs-intelligent-assistant.streamlit.app/)
+
 An AI-powered POC system designed for Transportation Management Systems (TMS). Upload logistics documents (PDF, DOCX, TXT) and interact with them using natural language. The system provides grounded answers, structured data extraction, and confidence scoring.
 
 ## 🚀 Key Features
