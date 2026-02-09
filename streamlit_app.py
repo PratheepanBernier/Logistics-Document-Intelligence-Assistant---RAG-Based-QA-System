@@ -27,7 +27,7 @@ from langchain_core.documents import Document
 load_dotenv()
 
 # --- Configuration (Directly from ENV or defaults) ---
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY","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")
 QA_MODEL = os.getenv("QA_MODEL", "llama-3.3-70b-versatile")
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", 1000))
